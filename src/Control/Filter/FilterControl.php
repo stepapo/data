@@ -17,15 +17,14 @@ use Stepapo\Dataset\Dataset;
  */
 class FilterControl extends DataControl
 {
-	#[Persistent]
-	public ?string $value = null;
-
+	#[Persistent] public ?string $value = null;
 	public array $onFilter;
 
 
 	public function __construct(
-		private Column $column,
 		private MainComponent $main,
+		private Column $column,
+		private bool $hide = false,
 	) {}
 
 
@@ -33,6 +32,7 @@ class FilterControl extends DataControl
 	{
 		$this->template->column = $this->column;
 		$this->template->value = $this->value;
+		$this->template->hide = $this->hide;
 		$this->template->render($this->main->getView()->filterTemplate);
 	}
 

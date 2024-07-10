@@ -12,5 +12,5 @@ use Stepapo\Utils\Schematic;
 class Link extends Schematic
 {
 	#[ValueProperty] public string $destination;
-	#[ToArray] public ?array $args = null;
+	#[ToArray] public array $args = [];
 }

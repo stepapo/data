@@ -28,9 +28,8 @@ class Column extends Schematic
 	public bool $hide = false;
 	public ?string $class = null;
 	public bool $cross = false;
-	public bool $aggregation = false;
 	public ?float $multiply = null;
-	#[Type(LatteFilter::class)] public LatteFilter|array|null $latteFilter = null;
+	#[Type(LatteFilter::class)] public LatteFilter|array|string|null $latteFilter = null;
 	#[Type(Link::class)] public Link|array|null $link = null;
 	#[Type(Sort::class)] public Sort|array|null $sort = null;
 	#[Type(Filter::class)] public Filter|array|null $filter = null;

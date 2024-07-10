@@ -18,6 +18,4 @@ abstract class DataTemplate extends Template
 	public User $user;
 	public string $basePath;
 	public Text $text;
-//	/** @var Column[] */ public array $columns;
-	public ?ImageStorage $imageStorage;
 }

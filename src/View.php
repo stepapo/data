@@ -2,6 +2,7 @@
 
 namespace Stepapo\Data;
 
+
 interface View
 {
 }

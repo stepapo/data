@@ -25,7 +25,7 @@ class Chart extends Schematic
     public ?string $vFormat = null;
     public bool $cumulative = false;
     public ?int $base = 0;
-    public ?array $series = null;
+    public array $series = [];
     public ?string $stacked = null;
-    public ?array $colors = null;
+    public array $colors = [];
 }

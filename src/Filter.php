@@ -15,7 +15,7 @@ class Filter extends Schematic
 	public ?string $function = null;
 	public ?int $collapse = null;
 	public bool $hide = false;
-	#[ArrayOfType(Option::class)] /** @var Option[] */ public ?array $options = [];
+	#[ArrayOfType(Option::class)] /** @var Option[] */ public array $options = [];
 
 
 	public function getNextrasName()

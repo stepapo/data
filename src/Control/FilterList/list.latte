@@ -1,9 +1,5 @@
-{templateType Stepapo\Dataset\Control\FilterList\FilterListTemplate}
+{templateType Stepapo\Data\Control\FilterList\FilterListTemplate}
 
-<div n:snippet>
-	{foreach $columns as $column}
-		{if $column->filter && !$column->filter->hide}
-			{control 'filter-' . $column->name}
-		{/}
-	{/}
+<div class="override-padding" n:inner-foreach="$columns as $column" n:inner-if="$column->filter && !$column->filter->hide" n:snippet>
+	{control 'filter-' . $column->name}
 </div>

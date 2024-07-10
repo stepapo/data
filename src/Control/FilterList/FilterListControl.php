@@ -17,15 +17,14 @@ use Stepapo\Data\Control\Filter\FilterControl;
  */
 class FilterListControl extends DataControl
 {
-	#[Persistent]
-	public ?string $value = null;
-
+	#[Persistent] public ?string $value = null;
 	public array $onFilter;
 
 
 	public function __construct(
 		private MainComponent $main,
 		private array $columns,
+		private ?array $visibleColumns = null,
 	) {}
 
 
@@ -42,6 +41,7 @@ class FilterListControl extends DataControl
 			$control = new FilterControl(
 				$this->main,
 				$this->columns[$name],
+				$this->visibleColumns && !isset($this->visibleColumns[$name]),
 			);
 			$control->onFilter[] = function (FilterControl $filter) {
 				$this->onFilter($this);
