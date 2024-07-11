@@ -8,6 +8,7 @@ use Stepapo\Utils\Attribute\ArrayOfType;
 use Stepapo\Utils\Schematic;
 
 
+
 class Filter extends Schematic
 {
 	public ?string $prompt = null;
