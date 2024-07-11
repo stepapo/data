@@ -8,7 +8,6 @@ use Nette\Application\Attributes\Persistent;
 use Stepapo\Data\Column;
 use Stepapo\Data\Control\DataControl;
 use Stepapo\Data\Control\MainComponent;
-use Stepapo\Dataset\Dataset;
 
 
 /**
@@ -28,7 +27,7 @@ class FilterControl extends DataControl
 	) {}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->column = $this->column;
 		$this->template->value = $this->value;

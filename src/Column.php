@@ -12,9 +12,9 @@ use Stepapo\Utils\Schematic;
 
 class Column extends Schematic
 {
-	public const ALIGN_LEFT = 'left';
-	public const ALIGN_CENTER = 'center';
-	public const ALIGN_RIGHT = 'right';
+	public const string ALIGN_LEFT = 'left';
+	public const string ALIGN_CENTER = 'center';
+	public const string ALIGN_RIGHT = 'right';
 
 	#[KeyProperty] public string $name;
 	#[CopyValue('name')] public ?string $columnName = null;
@@ -36,7 +36,7 @@ class Column extends Schematic
 	#[Type(Chart::class)] public Chart|array|null $chart = null;
 
 
-	public function getNextrasName()
+	public function getNextrasName(): string
 	{
 		if (str_contains($this->columnName, '.')) {
 			return str_replace('.', '->', $this->columnName);
@@ -48,7 +48,7 @@ class Column extends Schematic
 	}
 
 
-	public function getLatteName()
+	public function getLatteName(): string
 	{
 		if (str_contains($this->columnName, '.')) {
 			return str_replace('.', '_', $this->columnName);

@@ -9,10 +9,10 @@ use Stepapo\Utils\Schematic;
 
 class Chart extends Schematic
 {
-    public const CHART_TYPE_LINE = 'LineChart';
-    public const CHART_TYPE_AREA = 'AreaChart';
-    public const CHART_TYPE_PIE = 'PieChart';
-    public const CHART_TYPE_BAR = 'BarChart';
+    public const string CHART_TYPE_LINE = 'LineChart';
+    public const string CHART_TYPE_AREA = 'AreaChart';
+    public const string CHART_TYPE_PIE = 'PieChart';
+    public const string CHART_TYPE_BAR = 'BarChart';
 
     public ?string $type = null;
     public ?float $min = null;

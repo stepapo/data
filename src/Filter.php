@@ -8,7 +8,6 @@ use Stepapo\Utils\Attribute\ArrayOfType;
 use Stepapo\Utils\Schematic;
 
 
-
 class Filter extends Schematic
 {
 	public ?string $prompt = null;
@@ -16,10 +15,10 @@ class Filter extends Schematic
 	public ?string $function = null;
 	public ?int $collapse = null;
 	public bool $hide = false;
-	#[ArrayOfType(Option::class)] /** @var Option[] */ public array $options = [];
+	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 
-	public function getNextrasName()
+	public function getNextrasName(): string
 	{
 		if (str_contains($this->columnName, '.')) {
 			return str_replace('.', '->', $this->columnName);

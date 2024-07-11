@@ -7,8 +7,8 @@ namespace Stepapo\Data\Control\FilterList;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Multiplier;
 use Stepapo\Data\Control\DataControl;
-use Stepapo\Data\Control\MainComponent;
 use Stepapo\Data\Control\Filter\FilterControl;
+use Stepapo\Data\Control\MainComponent;
 
 
 /**
@@ -28,14 +28,14 @@ class FilterListControl extends DataControl
 	) {}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->columns = $this->columns;
 		$this->template->render($this->main->getView()->filterListTemplate);
 	}
 
 
-	public function createComponentFilter()
+	public function createComponentFilter(): Multiplier
 	{
 		return new Multiplier(function ($name): FilterControl {
 			$control = new FilterControl(

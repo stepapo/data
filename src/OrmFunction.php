@@ -12,5 +12,5 @@ use Stepapo\Utils\Schematic;
 class OrmFunction extends Schematic
 {
 	#[ValueProperty] public string $class;
-	#[ToArray] public array $args = [];
+	#[ToArray] public mixed $args = [];
 }
