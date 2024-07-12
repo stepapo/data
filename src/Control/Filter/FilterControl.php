@@ -16,7 +16,7 @@ use Stepapo\Data\Control\MainComponent;
  */
 class FilterControl extends DataControl
 {
-	#[Persistent] public ?string $value = null;
+	#[Persistent] public mixed $value = null;
 	public array $onFilter;
 
 
@@ -25,6 +25,13 @@ class FilterControl extends DataControl
 		private Column $column,
 		private bool $hide = false,
 	) {}
+
+
+	public function loadState(array $params): void
+	{
+		parent::loadState($params);
+		$this->value = $this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue);
+	}
 
 
 	public function render(): void
@@ -38,7 +45,7 @@ class FilterControl extends DataControl
 
 	public function handleFilter($value = null): void
 	{
-		$this->value = $value;
+		$this->value = $this->column->filter->value ?: $value;
 		if ($this->presenter->isAjax()) {
 			$this->onFilter($this);
 			$this->redrawControl();

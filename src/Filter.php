@@ -15,6 +15,8 @@ class Filter extends Schematic
 	public ?string $function = null;
 	public ?int $collapse = null;
 	public bool $hide = false;
+	public mixed $value = null;
+	public mixed $defaultValue = null;
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 
