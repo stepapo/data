@@ -1,5 +1,5 @@
 {templateType Stepapo\Data\Control\FilterList\FilterListTemplate}
 
-<div class="override-padding" n:inner-foreach="$columns as $column" n:inner-if="$column->filter" n:snippet>
+<div class="override-padding" n:inner-foreach="$columns as $column" n:if="$show" n:inner-if="$column->filter" n:snippet>
 	{control 'filter-' . $column->name}
 </div>

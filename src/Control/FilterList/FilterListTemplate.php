@@ -11,4 +11,5 @@ class FilterListTemplate extends DataTemplate
 {
 	public FilterListControl $control;
 	public array $columns;
+	public bool $show;
 }

@@ -14,4 +14,5 @@ class Sort extends Schematic
 	public bool $isDefault = false;
 	public string $direction = ICollection::ASC;
 	#[Type(OrmFunction::class)] public OrmFunction|array|null $function = null;
+	public bool $hide = false;
 }
