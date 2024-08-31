@@ -29,8 +29,8 @@ class Column extends Schematic
 	public ?string $class = null;
 	public bool $cross = false;
 	public ?float $multiply = null;
+	public ?\Closure $linkCallback = null;
 	#[Type(LatteFilter::class)] public LatteFilter|array|string|null $latteFilter = null;
-	#[Type(Link::class)] public Link|array|null $link = null;
 	#[Type(Sort::class)] public Sort|array|null $sort = null;
 	#[Type(Filter::class)] public Filter|array|null $filter = null;
 	#[Type(Chart::class)] public Chart|array|null $chart = null;
