@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stepapo\Data;
 
-use Nextras\Orm\Collection\ICollection;
 use Stepapo\Utils\Attribute\Type;
 use Stepapo\Utils\Schematic;
 
@@ -12,7 +11,7 @@ use Stepapo\Utils\Schematic;
 class Sort extends Schematic
 {
 	public bool $isDefault = false;
-	public string $direction = ICollection::ASC;
+	public string $direction = 'asc';
 	#[Type(OrmFunction::class)] public OrmFunction|array|null $function = null;
 	public bool $hide = false;
 }
