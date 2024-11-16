@@ -31,14 +31,10 @@ class FilterListControl extends DataControl
 	public function render(): void
 	{
 		$this->template->show = false;
-		$filterCount = 0;
 		foreach ($this->columns as $column) {
 			if ($column->filter && !$column->filter->hide) {
-				$filterCount++;
-				if ($filterCount > 1) {
-					$this->template->show = true;
-					break;
-				}
+				$this->template->show = true;
+				break;
 			}
 		}
 		$this->template->columns = $this->columns;
