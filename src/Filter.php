@@ -11,12 +11,13 @@ use Stepapo\Utils\Schematic;
 class Filter extends Schematic
 {
 	public ?string $prompt = null;
-	public ?string $columnName = null;
+	public string|array|null $columnName = null;
 	public ?string $function = null;
 	public ?int $collapse = null;
 	public bool $hide = false;
 	public mixed $value = null;
 	public mixed $defaultValue = null;
+	public string $type = 'multi';
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 

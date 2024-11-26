@@ -37,13 +37,13 @@ class FilterControl extends DataControl
 	public function render(): void
 	{
 		$this->template->column = $this->column;
-		$this->template->value = $this->value;
+		$this->template->value = $this->column->filter->type === 'single' ? $this->value : ($this->value ? explode(',', $this->value) : null);
 		$this->template->hide = $this->hide;
 		$this->template->render($this->main->getView()->filterTemplate);
 	}
 
 
-	public function handleFilter($value = null): void
+	public function handleFilter(mixed $value = null): void
 	{
 		$this->value = $this->column->filter->value ?: $value;
 		if ($this->presenter->isAjax()) {
