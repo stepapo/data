@@ -14,8 +14,8 @@ class Search extends Schematic
 	public ?\Closure $prepareCallback = null;
 	public ?\Closure $suggestCallback = null;
 	public ?\Closure $searchCallback = null;
-	#[Type(OrmFunction::class)] public OrmFunction|array|null $searchFunction;
-	#[Type(OrmFunction::class)] public OrmFunction|array|null $sortFunction = null;
+	#[Type(OrmFunction::class)] public ?OrmFunction $searchFunction;
+	#[Type(OrmFunction::class)] public ?OrmFunction $sortFunction = null;
 	public string $sortDirection = 'asc';
 	public bool $hide = false;
 }

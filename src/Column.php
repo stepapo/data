@@ -30,10 +30,10 @@ class Column extends Schematic
 	public bool $cross = false;
 	public ?float $multiply = null;
 	public ?\Closure $linkCallback = null;
-	#[Type(LatteFilter::class)] public LatteFilter|array|string|null $latteFilter = null;
-	#[Type(Sort::class)] public Sort|array|null $sort = null;
-	#[Type(Filter::class)] public Filter|array|null $filter = null;
-	#[Type(Chart::class)] public Chart|array|null $chart = null;
+	#[Type(LatteFilter::class)] public ?LatteFilter $latteFilter = null;
+	#[Type(Sort::class)] public ?Sort $sort = null;
+	#[Type(Filter::class)] public ?Filter $filter = null;
+	#[Type(Chart::class)] public ?Chart $chart = null;
 
 
 	public function getNextrasName(): string

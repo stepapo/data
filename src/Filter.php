@@ -17,7 +17,7 @@ class Filter extends Schematic
 	public bool $hide = false;
 	public mixed $value = null;
 	public mixed $defaultValue = null;
-	public string $type = 'multi';
+	public string $type = 'single';
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 
