@@ -13,6 +13,6 @@ class ValueTemplate extends DataTemplate
 {
 	public IEntity $entity;
 	public mixed $value;
-//	public ?array $linkArgs;
+	public ?array $linkArgs;
 	public Column $column;
 }

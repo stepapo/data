@@ -31,6 +31,7 @@ class Column extends Schematic
 	public ?float $multiply = null;
 	public ?\Closure $linkCallback = null;
 	#[Type(LatteFilter::class)] public ?LatteFilter $latteFilter = null;
+	#[Type(Link::class)] public ?Link $link = null;
 	#[Type(Sort::class)] public ?Sort $sort = null;
 	#[Type(Filter::class)] public ?Filter $filter = null;
 	#[Type(Chart::class)] public ?Chart $chart = null;
