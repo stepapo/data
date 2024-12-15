@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Stepapo\Data;
 
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Text extends Schematic
+class Text extends Config
 {
 	public string $search = 'Hledat';
 	public string $sort = 'Seřadit';

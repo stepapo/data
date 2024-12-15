@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Stepapo\Data;
 
 use Stepapo\Utils\Attribute\Type;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Search extends Schematic
+class Search extends Config
 {
 	public ?string $placeholder = null;
 	public ?\Closure $prepareCallback = null;

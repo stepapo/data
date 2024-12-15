@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Stepapo\Data;
 
 use Stepapo\Utils\Attribute\ToArray;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Link extends Schematic
+class Link extends Config
 {
 	public string $destination;
 	#[ToArray] public array $args = [];

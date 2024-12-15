@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Stepapo\Data;
 
 use Stepapo\Utils\Attribute\Type;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Sort extends Schematic
+class Sort extends Config
 {
 	public bool $isDefault = false;
 	public string $direction = 'asc';

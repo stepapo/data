@@ -7,10 +7,10 @@ namespace Stepapo\Data;
 use Stepapo\Utils\Attribute\CopyValue;
 use Stepapo\Utils\Attribute\KeyProperty;
 use Stepapo\Utils\Attribute\Type;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Column extends Schematic
+class Column extends Config
 {
 	public const string ALIGN_LEFT = 'left';
 	public const string ALIGN_CENTER = 'center';

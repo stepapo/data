@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Stepapo\Data;
 
 use Stepapo\Utils\Attribute\ArrayOfType;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Filter extends Schematic
+class Filter extends Config
 {
 	public ?string $prompt = null;
 	public string|array|null $columnName = null;

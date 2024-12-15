@@ -6,10 +6,10 @@ namespace Stepapo\Data;
 
 use Stepapo\Utils\Attribute\ToArray;
 use Stepapo\Utils\Attribute\ValueProperty;
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class OrmFunction extends Schematic
+class OrmFunction extends Config
 {
 	#[ValueProperty] public string $class;
 	#[ToArray] public mixed $args = [];

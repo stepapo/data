@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Stepapo\Data;
 
-use Stepapo\Utils\Schematic;
+use Stepapo\Utils\Config;
 
 
-class Chart extends Schematic
+class Chart extends Config
 {
 	public const string CHART_TYPE_LINE = 'LineChart';
 	public const string CHART_TYPE_AREA = 'AreaChart';
