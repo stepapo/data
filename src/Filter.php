@@ -18,6 +18,7 @@ class Filter extends Schematic
 	public mixed $value = null;
 	public mixed $defaultValue = null;
 	public string $type = 'single';
+	public string $multiMode = 'any';
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 
@@ -33,5 +34,4 @@ class Filter extends Schematic
 
 		return $this->columnName;
 	}
-
 }
