@@ -17,7 +17,7 @@
 		"php": ">=8.1",
 		"nette/application": "^3.2",
 		"nextras/orm": "^5.0",
-		"stepapo/utils": "^1.0"
+		"stepapo/utils": "dev-main"
 	},
 	"autoload": {
 		"psr-4": {
