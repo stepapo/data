@@ -14,7 +14,7 @@
 							{_$column->filter->prompt}
 						</a>
 						<a n:foreach="$column->filter->options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax">
-							{_$option instanceof Stepapo\Data\Option ? $option->label : $option}
+							{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 						</a>
 					</div>
 				{else}
@@ -28,7 +28,7 @@
 								{var $selected = $name == $value}
 							{/}
 							<a n:href="filter! value => $name" n:class="btn, btn-sm, ajax, $name == $value ? btn-primary : btn-secondary, ms-1">
-								{_$option instanceof Stepapo\Data\Option ? $option->label : $option}
+								{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 							</a>
 						{elseif $iterator->counter + 1 == $column->filter->collapse}
 							<a n:href="filter! value => !$selected ? $value : $option->name" n:class="btn, btn-sm, !$selected ? btn-primary : btn-secondary, ms-1, ajax">{_$selected ? $option->label : $column->filter->options[$value]->label}</a>
@@ -37,7 +37,7 @@
 							</button>
 							<div class="dropdown-menu">
 								<a n:foreach="$column->filter->options as $name => $option" n:if="$iterator->counter + 1 >= $column->filter->collapse" n:href="filter! value => $name" n:class="dropdown-item, ajax">
-									{_$option instanceof Stepapo\Data\Option ? $option->label : $option}
+									{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 								</a>
 							</div>
 							{breakIf true}
@@ -49,12 +49,12 @@
 					{_$column->filter->prompt}
 				</a>
 				<a n:foreach="$column->filter->options as $name => $option" n:href="filter! value => $name" n:class="btn, btn-sm, ms-1, text-start, ajax, $name == $value ? btn-primary : btn-secondary">
-					{_$option instanceof Stepapo\Data\Option ? $option->label : $option}
+					{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 				</a>
 			{/}
 		</div>
 		<div class="d-flex d-lg-none">
-			<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $column->filter->options[$value]->label : $column->filter->prompt}</a>
+			<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $column->filter->options[$value]->label : $column->filter->prompt|noescape}</a>
 			<button class="btn btn-sm btn-secondary ms-1 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown">
 				<span class="sr-only">Toggle Dropdown</span>
 			</button>
@@ -63,7 +63,7 @@
 					{_$column->filter->prompt}
 				</a>
 				<a n:foreach="$column->filter->options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax">
-					{_$option instanceof Stepapo\Data\Option ? $option->label : $option}
+					{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 				</a>
 			</div>
 		</div>

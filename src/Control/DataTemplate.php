@@ -10,6 +10,7 @@ use Nette\Security\User;
 use Stepapo\Data\Text;
 
 
+#[\AllowDynamicProperties]
 abstract class DataTemplate extends Template
 {
 	public Presenter $presenter;
