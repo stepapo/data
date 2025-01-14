@@ -19,6 +19,8 @@ class Filter extends Config
 	public mixed $defaultValue = null;
 	public string $type = 'single';
 	public string $multiMode = 'any';
+	public ?\Closure $populateCallback = null;
+	public ?\Closure $selectedCallback = null;
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
 
 

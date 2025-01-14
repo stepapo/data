@@ -14,4 +14,5 @@ class FilterTemplate extends DataTemplate
 	public Column $column;
 	public mixed $value;
 	public bool $hide;
+	public array $options;
 }

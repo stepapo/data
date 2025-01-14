@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Stepapo\Data\Control\Filter;
 
 use Nette\Application\Attributes\Persistent;
+use Nette\Application\ForbiddenRequestException;
+use Nette\Http\Request;
 use Stepapo\Data\Column;
 use Stepapo\Data\Control\DataControl;
 use Stepapo\Data\Control\MainComponent;
@@ -17,6 +19,7 @@ use Stepapo\Data\Control\MainComponent;
 class FilterControl extends DataControl
 {
 	#[Persistent] public mixed $value = null;
+	public array $options;
 	public array $onFilter;
 
 
@@ -31,6 +34,7 @@ class FilterControl extends DataControl
 	{
 		parent::loadState($params);
 		$this->value = $this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue);
+		$this->options = $this->column->filter->options ?: ($this->column->filter->selectedCallback)($this->value);
 	}
 
 
@@ -39,6 +43,7 @@ class FilterControl extends DataControl
 		$this->template->column = $this->column;
 		$this->template->value = $this->column->filter->type === 'single' ? $this->value : ($this->value ? explode(',', $this->value) : null);
 		$this->template->hide = $this->hide;
+		$this->template->options = $this->options;
 		$this->template->render($this->main->getView()->filterTemplate);
 	}
 
@@ -50,5 +55,16 @@ class FilterControl extends DataControl
 			$this->onFilter($this);
 			$this->redrawControl();
 		}
+	}
+
+
+	public function handlePopulate(): void
+	{
+		$query = $this->presenter->getHttpRequest()->getQuery('query');
+		if (!$this->column->filter->populateCallback) {
+			throw new ForbiddenRequestException;
+		}
+		$this->options = ($this->column->filter->populateCallback)($query);
+		$this->redrawControl('list');
 	}
 }
