@@ -15,6 +15,7 @@ abstract class DataTemplate extends Template
 {
 	public Presenter $presenter;
 	public User $user;
+	public string $baseUrl;
 	public string $basePath;
 	public Text $text;
 }
