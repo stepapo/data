@@ -6,8 +6,8 @@
 			{if $column->filter->collapse}
 				{if $column->filter->collapse == 1}
 					<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $options[$value]->label : $column->filter->prompt}</a>
-					<button class="btn btn-sm btn-secondary ms-1 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown">
-						<span class="sr-only">Toggle Dropdown</span>
+					<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+						<i class="fas fa-fw fa-ellipsis"></i>
 					</button>
 					<div class="dropdown-menu">
 						<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax">
@@ -32,8 +32,8 @@
 							</a>
 						{elseif $iterator->counter + 1 == $column->filter->collapse}
 							<a n:href="filter! value => !$selected ? $value : $option->name" n:class="btn, btn-sm, !$selected ? btn-primary : btn-secondary, ms-1, ajax">{_$selected ? $option->label : $column->filter->options[$value]->label}</a>
-							<button class="btn btn-sm btn-secondary ms-1 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown">
-								<span class="sr-only">Toggle Dropdown</span>
+							<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+								<i class="fas fa-fw fa-ellipsis"></i>
 							</button>
 							<div class="dropdown-menu">
 								<a n:foreach="$options as $name => $option" n:if="$iterator->counter + 1 >= $column->filter->collapse" n:href="filter! value => $name" n:class="dropdown-item, ajax">
@@ -55,8 +55,8 @@
 		</div>
 		<div class="d-flex d-lg-none">
 			<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $options[$value]->label : $column->filter->prompt|noescape}</a>
-			<button class="btn btn-sm btn-secondary ms-1 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown">
-				<span class="sr-only">Toggle Dropdown</span>
+			<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+				<i class="fas fa-fw fa-ellipsis"></i>
 			</button>
 			<div class="dropdown-menu">
 				<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax">
