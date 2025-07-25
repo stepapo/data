@@ -33,7 +33,6 @@ class FilterControl extends DataControl
 	public function loadState(array $params): void
 	{
 		parent::loadState($params);
-		bdump($this->column->filter);
 		$this->value = $this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue);
 		$this->options = $this->column->filter->options ?: ($this->column->filter->selectedCallback ? ($this->column->filter->selectedCallback)($this->value) : []);
 	}
