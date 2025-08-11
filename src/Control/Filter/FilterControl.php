@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stepapo\Data\Control\Filter;
 
 use Nette\Application\Attributes\Persistent;
+use Nette\Application\BadRequestException;
 use Nette\Application\ForbiddenRequestException;
 use Nette\Http\Request;
 use Stepapo\Data\Column;
@@ -35,6 +36,9 @@ class FilterControl extends DataControl
 		parent::loadState($params);
 		$this->value = $this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue);
 		$this->options = $this->column->filter->options ?: ($this->column->filter->selectedCallback ? ($this->column->filter->selectedCallback)($this->value) : []);
+		if ($this->value && !isset($this->options[$this->value])) {
+			throw new BadRequestException;
+		}
 	}
 
 
