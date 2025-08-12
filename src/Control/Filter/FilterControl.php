@@ -7,7 +7,6 @@ namespace Stepapo\Data\Control\Filter;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\BadRequestException;
 use Nette\Application\ForbiddenRequestException;
-use Nette\Http\Request;
 use Stepapo\Data\Column;
 use Stepapo\Data\Control\DataControl;
 use Stepapo\Data\Control\MainComponent;
