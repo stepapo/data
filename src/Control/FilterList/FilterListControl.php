@@ -49,7 +49,7 @@ class FilterListControl extends DataControl
 			$control = new FilterControl(
 				$this->main,
 				$this->columns[$name],
-				$this->visibleColumns && !isset($this->visibleColumns[$name]),
+				$this->visibleColumns === [] || ($this->visibleColumns && !isset($this->visibleColumns[$name])),
 			);
 			$control->onFilter[] = function (FilterControl $filter) {
 				$this->onFilter($this);
