@@ -36,7 +36,7 @@ class FilterControl extends DataControl
 		$this->value = $this->column->filter ? ($this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue)) : null;
 		$this->options = $this->column->filter ? ($this->column->filter->options ?: ($this->column->filter->selectedCallback ? ($this->column->filter->selectedCallback)($this->value) : [])) : [];
 		if ($this->value) {
-			foreach (explode(',', $this->value) as $v) {
+			foreach (explode(',', (string) $this->value) as $v) {
 				if (!isset($this->options[$v])) {
 					throw new BadRequestException;
 				}
