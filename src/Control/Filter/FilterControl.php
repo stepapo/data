@@ -35,8 +35,12 @@ class FilterControl extends DataControl
 		parent::loadState($params);
 		$this->value = $this->column->filter ? ($this->column->filter->value ?: ($this->value ?: $this->column->filter->defaultValue)) : null;
 		$this->options = $this->column->filter ? ($this->column->filter->options ?: ($this->column->filter->selectedCallback ? ($this->column->filter->selectedCallback)($this->value) : [])) : [];
-		if ($this->value && !isset($this->options[$this->value])) {
-			throw new BadRequestException;
+		if ($this->value) {
+			foreach (explode(',', $this->value) as $v) {
+				if (!isset($this->options[$v])) {
+					throw new BadRequestException;
+				}
+			}
 		}
 	}
 
