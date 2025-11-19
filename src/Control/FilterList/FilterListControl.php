@@ -25,6 +25,7 @@ class FilterListControl extends DataControl
 		private MainComponent $main,
 		private array $columns,
 		private ?array $visibleColumns = null,
+		private ?int $labelWidth = null,
 	) {}
 
 
@@ -49,6 +50,7 @@ class FilterListControl extends DataControl
 			$control = new FilterControl(
 				$this->main,
 				$this->columns[$name],
+				$this->labelWidth,
 				$this->visibleColumns === [] || ($this->visibleColumns && !isset($this->visibleColumns[$name])),
 			);
 			$control->onFilter[] = function (FilterControl $filter) {

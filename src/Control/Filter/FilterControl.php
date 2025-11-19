@@ -26,6 +26,7 @@ class FilterControl extends DataControl
 	public function __construct(
 		private MainComponent $main,
 		private Column $column,
+		private ?int $labelWidth,
 		private bool $hide = false,
 	) {}
 
@@ -51,6 +52,7 @@ class FilterControl extends DataControl
 		$this->template->value = $this->column->filter->type === 'single' ? $this->value : ($this->value ? explode(',', $this->value) : null);
 		$this->template->hide = $this->hide;
 		$this->template->options = $this->options;
+		$this->template->labelWidth = $this->labelWidth;
 		$this->template->render($this->main->getView()->filterTemplate);
 	}
 

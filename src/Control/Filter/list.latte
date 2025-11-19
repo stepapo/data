@@ -1,7 +1,7 @@
 {templateType Stepapo\Data\Control\Filter\FilterTemplate}
 <div n:if="!$hide && !$column->filter->hide" n:class="my-1" n:snippet>
 	<div class="btn-toolbar flex-nowrap">
-		<div class="btn btn-sm btn-label">{_$column->label ?: $column->name}:</div>
+		<div class="btn btn-sm btn-label"{if $labelWidth} style="width: {$labelWidth}px"{/}>{_$column->label ?: $column->name}:</div>
 		<div class="d-none d-lg-flex">
 			{if $column->filter->collapse}
 				{if $column->filter->collapse == 1}

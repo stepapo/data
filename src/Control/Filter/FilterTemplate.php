@@ -15,4 +15,5 @@ class FilterTemplate extends DataTemplate
 	public mixed $value;
 	public bool $hide;
 	public array $options;
+	public ?int $labelWidth;
 }
