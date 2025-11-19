@@ -26,7 +26,7 @@ class FilterControl extends DataControl
 	public function __construct(
 		private MainComponent $main,
 		private Column $column,
-		private ?int $labelWidth,
+		private ?int $labelWidth = null,
 		private bool $hide = false,
 	) {}
 
