@@ -5,7 +5,7 @@
 		<div class="d-none d-lg-flex">
 			{if $column->filter->collapse}
 				{if $column->filter->collapse == 1}
-					<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $options[$value]->label : $column->filter->prompt}</a>
+					<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{_$value ? $options[$value]->label : $column->filter->prompt}</a>
 					<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
 						<i class="fas fa-fw fa-ellipsis"></i>
 					</button>
