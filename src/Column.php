@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Stepapo\Data;
 
-use Latte\Essential\Filters;
 use Stepapo\Utils\Attribute\CopyValue;
 use Stepapo\Utils\Attribute\KeyProperty;
 use Stepapo\Utils\Attribute\Type;
@@ -56,11 +55,5 @@ class Column extends Config
 			return str_replace('.', '_', $this->columnName);
 		}
 		return $this->columnName;
-	}
-
-
-	public function getLatteFilter(): array
-	{
-		return [Filters::class, $this->latteFilter->name];
 	}
 }
