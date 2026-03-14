@@ -5,7 +5,7 @@
 	{php $v = $column->multiply ? $v * $column->multiply : $v}
 	<a n:tag-if="$column->link" href="{plink $column->link->destination ...array_values($linkArgs)}">
 		<span class="no-wrap">
-			{$column->prepend}{$column->latteFilter ? ($this->filters->{$column->latteFilter->name})($v, ...$column->latteFilter->args) : $v}{$column->append}
+			{$column->prepend}{$column->latteFilter ? $invokeFilter($column->latteFilter->name, array_merge([$v], $column->latteFilter->args)) : $v}{$column->append}
 		</span>
 	</a>{sep}{if $view->name == 'table'}<br>{else}, {/}{/}
 {/}
