@@ -2,70 +2,101 @@
 <div n:if="!$hide && !$column->filter->hide" n:class="my-1" n:snippet>
 	<div class="btn-toolbar flex-nowrap">
 		<div class="btn btn-sm btn-label"{if $labelWidth} style="width: {$labelWidth}px"{/}>{_$column->label ?: $column->name}:</div>
-		<div class="d-none d-lg-flex">
-			{if $column->filter->collapse}
-				{if $column->filter->collapse == 1}
-					<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{_$value ? $options[$value]->label : $column->filter->prompt}</a>
-					<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
-						<i class="fas fa-fw fa-ellipsis"></i>
-					</button>
-					<div class="dropdown-menu">
-						<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax">
-							{_$column->filter->prompt}
-						</a>
-						<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax">
-							{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
-						</a>
-					</div>
-				{else}
-					<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="btn, btn-sm, ajax, !$value ? btn-primary : btn-secondary, ms-1">
-						{_$column->filter->prompt}
-					</a>
-				{var $selected = !$value}
-					{foreach $options as $name => $option}
-						{if $iterator->counter + 1 < $column->filter->collapse}
-							{if $selected === false}
-								{var $selected = $name == $value}
+		{if $column->filter->populateCallback}
+			<div class="d-flex dropdown">
+				<a n:href="filter! value => null" n:class="btn, btn-sm, !$value ? btn-primary : btn-secondary, ms-1, ajax">{_$column->filter->prompt}</a>
+				<a n:foreach="$options as $name => $option" class="btn btn-sm btn-primary ms-1" n:if="$value == $name || (is_array($value) && in_array($name, $value))">
+					<span>{$option instanceof Stepapo\Data\Option ? $option->label : $option}</span>
+					{if $column->filter->type === 'single'}
+						{var $newValue = null}
+					{else}
+						{var $newValue = array_diff($value, [$name])}
+					{/}
+				</a>
+				<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+					<i class="fas fa-fw fa-ellipsis"></i>
+				</button>
+				<div class="dropdown-menu">
+					<input id="{$control->getName()}-input" type="text" class="small py-1 px-3" autocomplete="off" n:attr="data-populate-link: $column->filter->populateCallback ? $control->link('populate!')" style="border: 0; padding: 0; background-color: transparent">
+					<div n:snippet="list" n:inner-foreach="$options as $name => $option">
+						{if $column->filter->type === 'single'}
+							{var $newValue = $name}
+						{else}
+							{var $newValue = $value}
+							{if !$newValue || !in_array($name, $newValue)}
+								{php $newValue[] = $name}
 							{/}
-							<a n:href="filter! value => $name" n:class="btn, btn-sm, ajax, $name == $value ? btn-primary : btn-secondary, ms-1">
+						{/}
+						<a class="dropdown-item small ajax" style="padding-right: 1em;" n:href="filter! value => $column->filter->type === 'single' ? $newValue : implode(',', $newValue)">{$option instanceof Stepapo\Data\Option ? $option->label : $option}</a>
+					</div>
+				</div>
+			</div>
+		{else}
+			<div class="d-none d-lg-flex">
+				{if $column->filter->collapse}
+					{if $column->filter->collapse == 1}
+						<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{_$value ? $options[$value]->label : $column->filter->prompt}</a>
+						<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+							<i class="fas fa-fw fa-ellipsis"></i>
+						</button>
+						<div class="dropdown-menu">
+							<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax, small">
+								{_$column->filter->prompt}
+							</a>
+							<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax, small">
 								{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 							</a>
-						{elseif $iterator->counter + 1 == $column->filter->collapse}
-							<a n:href="filter! value => !$selected ? $value : $option->name" n:class="btn, btn-sm, !$selected ? btn-primary : btn-secondary, ms-1, ajax">{_$selected ? $option->label : $column->filter->options[$value]->label}</a>
-							<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
-								<i class="fas fa-fw fa-ellipsis"></i>
-							</button>
-							<div class="dropdown-menu">
-								<a n:foreach="$options as $name => $option" n:if="$iterator->counter + 1 >= $column->filter->collapse" n:href="filter! value => $name" n:class="dropdown-item, ajax">
+						</div>
+					{else}
+						<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="btn, btn-sm, ajax, !$value ? btn-primary : btn-secondary, ms-1">
+							{_$column->filter->prompt}
+						</a>
+						{var $selected = !$value}
+						{foreach $options as $name => $option}
+							{if $iterator->counter + 1 < $column->filter->collapse}
+								{if $selected === false}
+									{var $selected = $name == $value}
+								{/}
+								<a n:href="filter! value => $name" n:class="btn, btn-sm, ajax, $name == $value ? btn-primary : btn-secondary, ms-1">
 									{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
 								</a>
-							</div>
-							{breakIf true}
+							{elseif $iterator->counter + 1 == $column->filter->collapse}
+								<a n:href="filter! value => !$selected ? $value : $option->name" n:class="btn, btn-sm, !$selected ? btn-primary : btn-secondary, ms-1, ajax">{_$selected ? $option->label : $column->filter->options[$value]->label}</a>
+								<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+									<i class="fas fa-fw fa-ellipsis"></i>
+								</button>
+								<div class="dropdown-menu">
+									<a n:foreach="$options as $name => $option" n:if="$iterator->counter + 1 >= $column->filter->collapse" n:href="filter! value => $name" n:class="dropdown-item, ajax, small">
+										{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
+									</a>
+								</div>
+								{breakIf true}
+							{/}
 						{/}
 					{/}
+				{else}
+					<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="btn, btn-sm, ms-1, text-start, ajax, !$value ? btn-primary : btn-secondary">
+						{_$column->filter->prompt}
+					</a>
+					<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="btn, btn-sm, ms-1, text-start, ajax, $name == $value ? btn-primary : btn-secondary">
+						{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
+					</a>
 				{/}
-			{else}
-				<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="btn, btn-sm, ms-1, text-start, ajax, !$value ? btn-primary : btn-secondary">
-					{_$column->filter->prompt}
-				</a>
-				<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="btn, btn-sm, ms-1, text-start, ajax, $name == $value ? btn-primary : btn-secondary">
-					{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
-				</a>
-			{/}
-		</div>
-		<div class="d-flex d-lg-none">
-			<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $options[$value]->label : $column->filter->prompt|noescape}</a>
-			<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
-				<i class="fas fa-fw fa-ellipsis"></i>
-			</button>
-			<div class="dropdown-menu">
-				<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax">
-					{_$column->filter->prompt}
-				</a>
-				<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax">
-					{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
-				</a>
 			</div>
-		</div>
+			<div class="d-flex d-lg-none">
+				<a n:href="filter! value => $value" class="btn btn-sm btn-primary ms-1 ajax">{$value ? $options[$value]->label : $column->filter->prompt|noescape}</a>
+				<button class="btn btn-sm btn-secondary dropdown-toggle-split ms-1" type="button" data-bs-toggle="dropdown">
+					<i class="fas fa-fw fa-ellipsis"></i>
+				</button>
+				<div class="dropdown-menu">
+					<a n:href="filter! value => null" n:if="$column->filter->prompt" n:class="dropdown-item, ajax, small">
+						{_$column->filter->prompt}
+					</a>
+					<a n:foreach="$options as $name => $option" n:href="filter! value => $name" n:class="dropdown-item, ajax, small">
+						{_$option instanceof Stepapo\Data\Option ? $option->label : $option|noescape}
+					</a>
+				</div>
+			</div>
+		{/}
 	</div>
 </div>

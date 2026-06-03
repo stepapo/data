@@ -1,0 +1,8 @@
+{templateType Stepapo\Data\Control\FilterList\FilterListTemplate}
+{if $show}
+	{foreach $columns as $column}
+		{if $column->filter}
+			{control 'filter-' . $column->name}
+		{/}
+	{/}
+{/}

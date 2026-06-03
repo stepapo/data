@@ -1,0 +1,40 @@
+{templateType Stepapo\Data\Control\Filter\FilterTemplate}
+<div n:if="!$hide && !$column->filter->hide" class="mt-lg-0 mt-2" n:snippet>
+	<div n:class="dropdown-custom, $value ? dropdown-active, dropdown, small">
+		<div n:if="!$value" type="button" data-bs-toggle="dropdown">
+			<b>{_$column->label ?: $column->name}</b>
+			<i class="fal fa-fw fa-bars-filter ms-2 lh-base" style="float: right;"></i>
+		</div>
+		{if $value}
+			<b type="button" data-bs-toggle="dropdown">{_$column->label ?: $column->name}</b>
+			<a n:if="$value" n:href="filter! value => null" class="ajax ms-2"><i class="fal fa-fw fa-xmark lh-base" style="float: right;"></i></a>
+		{/}
+		<div>
+			<div n:ifcontent>
+				<div n:foreach="$options as $name => $option" n:if="$value == $name || (is_array($value) && in_array($name, $value))">
+					<span>{$option instanceof Stepapo\Data\Option ? $option->label : $option}</span>
+					{if $column->filter->type === 'single'}
+						{var $newValue = null}
+					{else}
+						{var $newValue = array_diff($value, [$name])}
+					{/}
+					<a n:if="$value" n:href="filter! value => $column->filter->type === 'single' ? $newValue : implode(',', $newValue)" class="text-center ajax ms-2"><i class="fal fa-fw fa-xmark" style="width: 17.5px; line-height: 21px; font-size: 10px; float: right;"></i></a>
+				</div>
+			</div>
+			<div class="dropdown-menu-custom dropdown-menu">
+				<input type="text" class="small" n:attr="data-populate-link: $column->filter->populateCallback ? $control->link('populate!')" style="border: 0; padding: 0; background-color: transparent">
+				<div n:snippet="list" style="max-height: 105px; overflow-y: scroll;" n:inner-foreach="$options as $name => $option">
+					{if $column->filter->type === 'single'}
+						{var $newValue = $name}
+					{else}
+						{var $newValue = $value}
+						{if !$newValue || !in_array($name, $newValue)}
+							{php $newValue[] = $name}
+						{/}
+					{/}
+					<a class="dropdown-item small ajax" style="padding-right: 1em;" n:href="filter! value => $column->filter->type === 'single' ? $newValue : implode(',', $newValue)">{$option instanceof Stepapo\Data\Option ? $option->label : $option}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
