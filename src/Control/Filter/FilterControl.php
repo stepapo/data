@@ -60,7 +60,7 @@ class FilterControl extends DataControl
 	public function handleFilter(mixed $value = null): void
 	{
 		$this->value = $this->column->filter->value ?: $value;
-		if ($this->presenter->isAjax()) {
+		if ($this->getPresenter()->isAjax()) {
 			$this->onFilter($this);
 			$this->redrawControl();
 		}
@@ -69,7 +69,7 @@ class FilterControl extends DataControl
 
 	public function handlePopulate(): void
 	{
-		$query = $this->presenter->getHttpRequest()->getQuery('query');
+		$query = $this->getPresenter()->getHttpRequest()->getQuery('query');
 		if (!$this->column->filter->populateCallback) {
 			throw new ForbiddenRequestException;
 		}
