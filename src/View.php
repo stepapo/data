@@ -7,4 +7,6 @@ namespace Stepapo\Data;
 
 interface View
 {
+	function getFilterTemplate(): string;
+	function getFilterListTemplate(): string;
 }

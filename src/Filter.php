@@ -22,18 +22,4 @@ class Filter extends Config
 	public ?\Closure $populateCallback = null;
 	public ?\Closure $selectedCallback = null;
 	/** @var Option[] */ #[ArrayOfType(Option::class)] public array $options = [];
-
-
-	public function getNextrasName(): string
-	{
-		if (str_contains($this->columnName, '.')) {
-			return str_replace('.', '->', $this->columnName);
-		}
-
-		if (str_contains($this->columnName, '_')) {
-			return str_replace('_', '->', $this->columnName);
-		}
-
-		return $this->columnName;
-	}
 }

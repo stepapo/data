@@ -37,18 +37,6 @@ class Column extends Config
 	#[Type(Chart::class)] public ?Chart $chart = null;
 
 
-	public function getNextrasName(): string
-	{
-		if (str_contains($this->columnName, '.')) {
-			return str_replace('.', '->', $this->columnName);
-		}
-		if (str_contains($this->columnName, '_')) {
-			return str_replace('_', '->', $this->columnName);
-		}
-		return $this->columnName;
-	}
-
-
 	public function getLatteName(): string
 	{
 		if (str_contains($this->columnName, '.')) {

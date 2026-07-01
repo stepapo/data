@@ -53,7 +53,7 @@ class FilterControl extends DataControl
 		$this->template->hide = $this->hide;
 		$this->template->options = $this->options;
 		$this->template->labelWidth = $this->labelWidth;
-		$this->template->render($this->main->getView()->filterTemplate);
+		$this->template->render($this->main->getView()->getFilterTemplate());
 	}
 
 

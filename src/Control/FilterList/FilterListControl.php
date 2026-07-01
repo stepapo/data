@@ -39,8 +39,8 @@ class FilterListControl extends DataControl
 			}
 		}
 		$this->template->columns = $this->columns;
-		
-		$this->template->render($this->main->getView()->filterListTemplate);
+
+		$this->template->render($this->main->getView()->getFilterListTemplate());
 	}
 
 
