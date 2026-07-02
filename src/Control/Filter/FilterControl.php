@@ -28,7 +28,8 @@ class FilterControl extends DataControl
 		private Column $column,
 		private ?int $labelWidth = null,
 		private bool $hide = false,
-	) {}
+	) {
+	}
 
 
 	public function loadState(array $params): void

@@ -13,8 +13,8 @@ abstract class DataControl extends Control
 {
 	protected function createTemplate(?string $class = null): Template
 	{
-		/** @var \Nette\Bridges\ApplicationLatte\Template $template */
 		$template = parent::createTemplate($class);
+		\assert($template instanceof \Nette\Bridges\ApplicationLatte\Template);
 		$template->getLatte()->addExtension(new RawPhpExtension);
 		return $template;
 	}

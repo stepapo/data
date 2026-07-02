@@ -26,7 +26,8 @@ class FilterListControl extends DataControl
 		private array $columns,
 		private ?array $visibleColumns = null,
 		private ?int $labelWidth = null,
-	) {}
+	) {
+	}
 
 
 	public function render(): void
