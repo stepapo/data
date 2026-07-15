@@ -7,6 +7,7 @@ namespace Stepapo\Data\Control\Filter;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\BadRequestException;
 use Nette\Application\ForbiddenRequestException;
+use Nette\Utils\Arrays;
 use Stepapo\Data\Column;
 use Stepapo\Data\Control\DataControl;
 use Stepapo\Data\Control\MainComponent;
@@ -14,13 +15,12 @@ use Stepapo\Data\Control\MainComponent;
 
 /**
  * @property-read FilterTemplate $template
- * @method onFilter(FilterControl $control)
  */
 class FilterControl extends DataControl
 {
 	#[Persistent] public mixed $value = null;
 	public array $options;
-	public array $onFilter;
+	/** @var array<callable(static): void> */ public array $onFilter;
 
 
 	public function __construct(
@@ -62,7 +62,7 @@ class FilterControl extends DataControl
 	{
 		$this->value = $this->column->filter->value ?: $value;
 		if ($this->getPresenter()->isAjax()) {
-			$this->onFilter($this);
+			Arrays::invoke($this->onFilter, $this);
 			$this->redrawControl();
 		}
 	}

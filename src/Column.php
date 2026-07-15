@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Stepapo\Data;
 
+use Nette\Application\IPresenter;
+use Nextras\Orm\Entity\IEntity;
 use Stepapo\Utils\Attribute\CopyValue;
 use Stepapo\Utils\Attribute\KeyProperty;
 use Stepapo\Utils\Attribute\Type;
@@ -29,7 +31,7 @@ class Column extends Config
 	public ?string $class = null;
 	public bool $cross = false;
 	public ?float $multiply = null;
-	public ?\Closure $linkCallback = null;
+	/** @var \Closure(IEntity, IPresenter): string|null */ public ?\Closure $linkCallback = null;
 	#[Type(LatteFilter::class)] public ?LatteFilter $latteFilter = null;
 	#[Type(Link::class)] public ?Link $link = null;
 	#[Type(Sort::class)] public ?Sort $sort = null;

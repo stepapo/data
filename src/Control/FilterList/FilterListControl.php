@@ -6,6 +6,7 @@ namespace Stepapo\Data\Control\FilterList;
 
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Multiplier;
+use Nette\Utils\Arrays;
 use Stepapo\Data\Control\DataControl;
 use Stepapo\Data\Control\Filter\FilterControl;
 use Stepapo\Data\Control\MainComponent;
@@ -13,12 +14,11 @@ use Stepapo\Data\Control\MainComponent;
 
 /**
  * @property-read FilterListTemplate $template
- * @method onFilter(FilterListControl $control)
  */
 class FilterListControl extends DataControl
 {
 	#[Persistent] public ?string $value = null;
-	public array $onFilter;
+	/** @var array<callable(static): void> */ public array $onFilter;
 
 
 	public function __construct(
@@ -55,7 +55,7 @@ class FilterListControl extends DataControl
 				$this->visibleColumns === [] || ($this->visibleColumns && !isset($this->visibleColumns[$name])),
 			);
 			$control->onFilter[] = function (FilterControl $filter) {
-				$this->onFilter($this);
+				Arrays::invoke($this->onFilter, $this);
 				$this->redrawControl();
 			};
 			return $control;

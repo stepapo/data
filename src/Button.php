@@ -14,5 +14,5 @@ class Button extends Config
 	#[KeyProperty] public string $name;
 	#[ValueProperty] public string $label;
 	public string $style = 'primary';
-	public ?\Closure $callback = null;
+	/** @var \Closure(mixed): void|null */ public ?\Closure $callback = null;
 }
