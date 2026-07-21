@@ -18,7 +18,7 @@ use Stepapo\Data\Control\MainComponent;
 class FilterListControl extends DataControl
 {
 	#[Persistent] public ?string $value = null;
-	/** @var array<callable(static): void> */ public array $onFilter;
+	/** @var array<callable(static): void> */ public array $onFilter = [];
 
 
 	public function __construct(

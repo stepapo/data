@@ -20,7 +20,7 @@ class FilterControl extends DataControl
 {
 	#[Persistent] public mixed $value = null;
 	public array $options;
-	/** @var array<callable(static): void> */ public array $onFilter;
+	/** @var array<callable(static): void> */ public array $onFilter = [];
 
 
 	public function __construct(
