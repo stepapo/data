@@ -15,7 +15,7 @@ class Search extends Config
 	/** @var \Closure(?string): ?string|null */ public ?\Closure $prepareCallback = null;
 	/** @var \Closure(?string): ?string|null */ public ?\Closure $suggestCallback = null;
 	/** @var \Closure(ICollection, string): ICollection|null */ public ?\Closure $searchCallback = null;
-	#[Type(OrmFunction::class)] public ?OrmFunction $searchFunction;
+	#[Type(OrmFunction::class)] public ?OrmFunction $searchFunction = null;
 	#[Type(OrmFunction::class)] public ?OrmFunction $sortFunction = null;
 	public string $sortDirection = 'asc';
 	public bool $hide = false;
